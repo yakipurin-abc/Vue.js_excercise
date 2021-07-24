@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/Realtime.css">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <input type="text" v-model="keyword" class="txt-box">
+    <div class="user-list">
+      <ul>
+        <li v-for="user in filterdUsers" :key="user"> {{ user }}</li>
+      </ul>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data:{
+        keyword:'',
+        users:['佐藤', '山田', '鈴木', '田中']
+      },
+      computed: {
+        filterdUsers: function() {
+          var users = [];
+          for(var i in this.users) {
+            var user = this.users[i];
+            if(user.indexOf(this.keyword) !==-1) {
+              users.push(user);
+            }
+          }
+          return users;
+        }
+      }
+    })
+  </script>
+</body>
+</html>

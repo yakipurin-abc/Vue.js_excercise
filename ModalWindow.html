@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/ModalWindow.css">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <button @click="openWindow">開く</button>
+    <div id="overlay" v-show="showContent" @click="closeWindow">
+      <div class="content" @click="stopWindow">
+        <p>モーダルウィンドウ</p>
+        <button @click="closeWindow">閉じる</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+          showContent: false
+        },
+        methods:{
+          openWindow: function(){
+            this.showContent = true
+          },
+          closeWindow: function(){
+            this.showContent = false
+          },
+          stopWindow: function() {
+            event.stopPropagation()
+          }
+        }
+      })
+  </script>
+</body>
+</html>
